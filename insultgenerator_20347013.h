@@ -49,6 +49,6 @@ public:
     vector<string> generateAndSave(const string filename, const int numInsults);
 private:
     vector<string> col1, col2, col3;
-    set<string> insultGroup;
-    int generateRandomNumber(int max);
+    //set<string> insultGroup;
+    int generateRandomNumber(const int max);
 };
