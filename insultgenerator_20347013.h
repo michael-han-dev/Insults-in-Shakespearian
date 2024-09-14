@@ -2,6 +2,8 @@
 Author: Michael Han
 Header file for Shakespearean Insult Generator
 */
+#ifndef INSULTGENERATOR_20347013_H
+#define INSULTGENERATOR_20347013_H
 
 #include <string>
 #include <exception>
@@ -29,8 +31,7 @@ private:
 
 // Exception class for when the number of insults requested is out of bounds
 class NumInsultsOutOfBounds {
-
-public:
+public: 
     NumInsultsOutOfBounds(const string&);
     string what() const;
 private:
@@ -52,3 +53,4 @@ private:
     //set<string> insultGroup;
     int generateRandomNumber(const int max);
 };
+#endif

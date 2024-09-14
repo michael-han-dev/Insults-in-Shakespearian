@@ -10,7 +10,7 @@ C++ logic to create Shakespearean Insult Generator
 #include <fstream>
 #include <exception>
 
-#include <insultgenerator_20347013.h>
+#include "insultgenerator_20347013.h"
 using namespace std;
 
 
@@ -22,6 +22,9 @@ int InsultGenerator::generateRandomNumber(const int max) {
 //Combines vectors to generate insult
 string InsultGenerator::talkToMe(){
     int num1, num2, num3;
+    if (col1.size() == 0 || col2.size() == 0 || col3.size() == 0){
+        throw FileException("File could not be read");
+    }
     num1 = generateRandomNumber(col1.size()-1);
     num2 = generateRandomNumber(col2.size()-1);
     num3 = generateRandomNumber(col3.size()-1);
@@ -47,10 +50,11 @@ void InsultGenerator::initialize(){
         col3.push_back(words[2]);
         
     }
-    cout << "Column 1: " << col1.back() << endl;
-    cout << "Column 2: " << col2.back() << endl;
-    cout << "Column 3: " << col3.back() << endl;
-    cout << "-----------------" << endl;
+    // Print all words in the columns after processing the file
+    for (size_t i = 0; i < col1.size(); i++) {
+        cout << "Col1: " << col1[i] << " Col2: " << col2[i] << " Col3: " << col3[i] << endl;
+    }
+
 
     file.close();
 }
@@ -62,13 +66,17 @@ vector<string> InsultGenerator::generate(const int numInsults){
     }
 
     vector<string> insults;
-    for (int i = 0; i < numInsults; i++){
-        insults.push_back(talkToMe());
+    while (insults.size() < numInsults) {
+        string newInsult = talkToMe();
+        
+        // Only add the insult if it's not already in the vector
+        if (find(insults.begin(), insults.end(), newInsult) == insults.end()) {
+            insults.push_back(newInsult);
+        }
     }
-
-    //Sort and remove duplicates in vector
+    //sort the insults into alphabetical order
     sort(insults.begin(), insults.end());
-    insults.erase(unique(insults.begin(), insults.end()), insults.end());
+
     return insults;
 }
 
@@ -83,8 +91,17 @@ vector<string> InsultGenerator::generateAndSave(const string filename, const int
             file << insults[i] << endl;
         }
         file.close();
+        return insults;
     }
+}
 
+FileException::FileException(const string& message) : message(message) {}
 
+string FileException::what() const { 
+    return message; 
+}
+NumInsultsOutOfBounds::NumInsultsOutOfBounds(const string& message) : message(message) {}
 
+string NumInsultsOutOfBounds::what() const {
+	return message;
 }
