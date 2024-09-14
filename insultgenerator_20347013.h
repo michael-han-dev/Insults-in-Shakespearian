@@ -2,7 +2,7 @@
 Author: Michael Han
 Header file for Shakespearean Insult Generator
 */
-#ifndef INSULTGENERATOR_20347013_H
+
 #define INSULTGENERATOR_20347013_H
 
 #include <string>
@@ -53,4 +53,3 @@ private:
     //set<string> insultGroup;
     int generateRandomNumber(const int max);
 };
-#endif

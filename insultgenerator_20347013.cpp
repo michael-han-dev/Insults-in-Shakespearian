@@ -13,6 +13,8 @@ C++ logic to create Shakespearean Insult Generator
 #include "insultgenerator_20347013.h"
 using namespace std;
 
+// null constructor
+InsultGenerator::InsultGenerator() {}
 
 //Generates a random number
 int InsultGenerator::generateRandomNumber(const int max) {
@@ -25,9 +27,9 @@ string InsultGenerator::talkToMe(){
     if (col1.size() == 0 || col2.size() == 0 || col3.size() == 0){
         throw FileException("File could not be read");
     }
-    num1 = generateRandomNumber(col1.size()-1);
-    num2 = generateRandomNumber(col2.size()-1);
-    num3 = generateRandomNumber(col3.size()-1);
+    num1 = generateRandomNumber(col1.size());
+    num2 = generateRandomNumber(col2.size());
+    num3 = generateRandomNumber(col3.size());
     return "Thou " + col1[num1] + " " + col2[num2] + " " + col3[num3] + "!";
 }
 
@@ -50,10 +52,6 @@ void InsultGenerator::initialize(){
         col3.push_back(words[2]);
         
     }
-    // Print all words in the columns after processing the file
-    for (size_t i = 0; i < col1.size(); i++) {
-        cout << "Col1: " << col1[i] << " Col2: " << col2[i] << " Col3: " << col3[i] << endl;
-    }
 
 
     file.close();
@@ -62,7 +60,7 @@ void InsultGenerator::initialize(){
 //Generates and saves the insults to a file
 vector<string> InsultGenerator::generate(const int numInsults){
     if (numInsults < 1 || numInsults > 10000){
-        throw NumInsultsOutOfBounds("Number of insults requested is out of bounds 0 <= insults <= 10000");
+        throw NumInsultsOutOfBounds("Number of insults requested is out of bounds 0 < insults <= 10000");
     }
 
     vector<string> insults;
@@ -75,7 +73,7 @@ vector<string> InsultGenerator::generate(const int numInsults){
         }
     }
     //sort the insults into alphabetical order
-    sort(insults.begin(), insults.end());
+    // sort(insults.begin(), insults.end());
 
     return insults;
 }
