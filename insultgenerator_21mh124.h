@@ -3,7 +3,7 @@ Author: Michael Han
 Header file for Shakespearean Insult Generator
 */
 
-#define INSULTGENERATOR_20347013_H
+#define INSULTGENERATOR_21mh124_H
 
 #include <string>
 #include <exception>
