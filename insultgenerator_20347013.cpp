@@ -9,6 +9,8 @@ C++ logic to create Shakespearean Insult Generator
 #include <string>
 #include <fstream>
 #include <exception>
+#include <cstdlib>
+#include <ctime>
 
 #include "insultgenerator_20347013.h"
 using namespace std;
@@ -18,7 +20,11 @@ InsultGenerator::InsultGenerator() {}
 
 //Generates a random number
 int InsultGenerator::generateRandomNumber(const int max) {
-    return rand() % max;
+    int x = time(0);
+    srand(x);
+    int n = 1 + rand() % max;
+    cout << n << endl;
+    return n; 
 }
 
 //Combines vectors to generate insult
