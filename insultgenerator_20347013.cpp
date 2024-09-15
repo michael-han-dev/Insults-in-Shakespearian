@@ -17,11 +17,13 @@ using namespace std;
 
 // null constructor
 InsultGenerator::InsultGenerator() {
+    // Seed the random number generator every time the program is run
     srand(time(0));
 }
 
 //Generates a random number
 int InsultGenerator::generateRandomNumber(const int max) {
+    // Generate a random number between 1 and max
     int n = 1 + rand() % max;
     return n; 
 }
@@ -32,6 +34,7 @@ string InsultGenerator::talkToMe(){
     if (col1.size() == 0 || col2.size() == 0 || col3.size() == 0){
         throw FileException("File could not be read");
     }
+    // Generate random numbers to select a word from each column
     num1 = generateRandomNumber(col1.size());
     num2 = generateRandomNumber(col2.size());
     num3 = generateRandomNumber(col3.size());
@@ -82,6 +85,7 @@ vector<string> InsultGenerator::generate(const int numInsults){
     return insults;
 }
 
+//Generates and saves the insults to a file
 vector<string> InsultGenerator::generateAndSave(const string filename, const int numInsults){
     ofstream file(filename);
     if (numInsults < 1 || numInsults > 10000){
@@ -97,11 +101,14 @@ vector<string> InsultGenerator::generateAndSave(const string filename, const int
     }
 }
 
+//FileException implementation
 FileException::FileException(const string& message) : message(message) {}
 
 string FileException::what() const { 
     return message; 
 }
+
+//NumInsultsOutOfBounds implementation
 NumInsultsOutOfBounds::NumInsultsOutOfBounds(const string& message) : message(message) {}
 
 string NumInsultsOutOfBounds::what() const {
