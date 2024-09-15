@@ -16,14 +16,13 @@ C++ logic to create Shakespearean Insult Generator
 using namespace std;
 
 // null constructor
-InsultGenerator::InsultGenerator() {}
+InsultGenerator::InsultGenerator() {
+    srand(time(0));
+}
 
 //Generates a random number
 int InsultGenerator::generateRandomNumber(const int max) {
-    int x = time(0);
-    srand(x);
     int n = 1 + rand() % max;
-    cout << n << endl;
     return n; 
 }
 
@@ -55,8 +54,7 @@ void InsultGenerator::initialize(){
         }
         col1.push_back(words[0]);
         col2.push_back(words[1]);
-        col3.push_back(words[2]);
-        
+        col3.push_back(words[2]);      
     }
 
 
@@ -79,7 +77,7 @@ vector<string> InsultGenerator::generate(const int numInsults){
         }
     }
     //sort the insults into alphabetical order
-    // sort(insults.begin(), insults.end());
+    sort(insults.begin(), insults.end());
 
     return insults;
 }
