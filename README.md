@@ -1,5 +1,5 @@
 # Purpose of the Generator for Insults in Shakespearian Language
-320 C++ Project Which Generates Insults from a text file of 3 50 word Shakespearian era words.
+320 C++ Project Which Generates Insults from a text file of 3 50 word columns containing Shakespearian era words.
 
 # To Run:
 1. Install a C++ compiler (https://code.visualstudio.com/docs/languages/cpp)
