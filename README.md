@@ -1,4 +1,4 @@
-# Shakespearian-Insult-Generator
+# Purpose of the Generator for Insults in Shakespearian Language
 320 C++ Project Which Generates Insults from a text file of 3 50 word Shakespearian era words.
 
 # To Run:
